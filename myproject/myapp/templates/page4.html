@@ -1,0 +1,103 @@
+<!-- templates/myapp/page_four.html -->
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <p class="slow-fade text-light" id="line1" style="opacity: 1; font-size: 14px;">This is the fourth page of the website. The list of literature was compiled by ChatGPT.</p>
+
+        <p class="slow-fade text-light" id="line1" style="opacity: 1;">Choose your level of humanities education:</p>
+
+        <p class="slow-fade text-light" id="line1" style="opacity: 1;">
+            <label for="education-level"></label>
+            <select class="button slow-fade text-light" id="education-level" style="opacity: 1; animation-duration: 30s;" onchange="updateLiterature()">
+                <option value="school" selected>School Education</option>
+                <option value="university">Higher Education (University)</option>
+                <option value="humanities">Humanities Education</option>
+                <option value="phd">Doctor of Philosophy (PhD)</option>
+            </select>
+
+            <div id="literature-list">
+                <!-- The literature list will be displayed here -->
+            </div>
+        </p>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Simulate the selection of the default value and trigger the updateLiterature() function
+                var select = document.getElementById("education-level");
+                select.value = "school";
+                updateLiterature();
+                
+                // Set a timeout to show the navigation button after 15 seconds
+                setTimeout(function() {
+                    showNavigationButton();
+                }, 15000);
+            });
+
+            function showNavigationButton() {
+                // Create the navigation button
+                var navigationButton = document.createElement("button");
+                navigationButton.innerHTML = "Again";
+                navigationButton.className = "button slow-fade";
+                navigationButton.id = "button";
+                
+                // Apply styles to the button
+                navigationButton.style.marginTop = "100px";
+                navigationButton.style.padding = "8px 16px";
+                navigationButton.style.fontSize = "16px";
+                navigationButton.style.backgroundColor = "#4CAF50";
+                navigationButton.style.color = "white";
+                navigationButton.style.border = "none";
+                navigationButton.style.borderRadius = "4px";
+                navigationButton.style.cursor = "pointer";
+                navigationButton.style.opacity = '1';
+
+                // Set the onclick event to navigate to Page 1
+                navigationButton.onclick = function() {
+                    // Navigate to Page 1 (replace with your actual page URL)
+                    window.location.href = "{% url 'page1' %}";
+                };
+
+                // Append the button to the body or any other container
+                document.body.appendChild(navigationButton);
+            }
+
+            function updateLiterature() {
+                var select = document.getElementById("education-level");
+                var selectedValue = select.options[select.selectedIndex].value;
+                var literatureList = document.getElementById("literature-list");
+
+                // Clear the previous list
+                literatureList.innerHTML = "";
+
+                // Add literature based on the selected level
+                if (selectedValue === "school") {
+                    literatureList.innerHTML = "<p><b style='font-family: Arial, sans-serif;'>Logic:</b> 'Introduction to Logic' - Irving M. Copi</p>" +
+                                              "<p><b style='font-family: 'Times New Roman', serif;'>Philosophy:</b> 'Sophie's World' - Jostein Gaarder</p>" +
+                                              "<p><b style='font-family: 'Courier New', monospace;'>History:</b> 'The Story of Civilization' - Will Durant</p>" +
+                                              "<p><b style='font-family: 'Verdana, Geneva, sans-serif;'>Sociology:</b> 'The Sociological Imagination' - C. Wright Mills</p>" +
+                                              "<p><b style='font-family: 'Georgia, serif;'>Political Science:</b> 'The Republic' - Plato</p>";
+                } else if (selectedValue === "university") {
+                    literatureList.innerHTML = "<p><b style='font-family: Arial, sans-serif;'>Logic:</b> 'Symbolic Logic and the Game of Logic' - Lewis Carroll</p>" +
+                                              "<p><b style='font-family: 'Times New Roman', serif;'>Philosophy:</b> 'Meditations' - Marcus Aurelius</p>" +
+                                              "<p><b style='font-family: 'Courier New', monospace;'>History:</b> 'A People's History of the United States' - Howard Zinn</p>" +
+                                              "<p><b style='font-family: 'Verdana, Geneva, sans-serif;'>Sociology:</b> 'The Division of Labor in Society' - Emile Durkheim</p>" +
+                                              "<p><b style='font-family: 'Georgia, serif;'>Political Science:</b> 'The Prince' - Niccolò Machiavelli</p>";
+                } else if (selectedValue === "humanities") {
+                    literatureList.innerHTML = "<p><b style='font-family: Arial, sans-serif;'>Logic:</b> 'Logic, Inductive and Deductive' - William Minto</p>" +
+                                              "<p><b style='font-family: 'Times New Roman', serif;'>Philosophy:</b> 'Beyond Good and Evil' - Friedrich Nietzsche</p>" +
+                                              "<p><b style='font-family: 'Courier New', monospace;'>History:</b> 'The History of Philosophy' - A.C. Grayling</p>" +
+                                              "<p><b style='font-family: 'Verdana, Geneva, sans-serif;'>Sociology:</b> 'The Social Contract' - Jean-Jacques Rousseau</p>" +
+                                              "<p><b style='font-family: 'Georgia, serif;'>Political Science:</b> 'Democracy in America' - Alexis de Tocqueville</p>";
+                } else if (selectedValue === "phd") {
+                    literatureList.innerHTML = "<p><b style='font-family: Arial, sans-serif;'>Logic:</b> 'Gödel, Escher, Bach: An Eternal Golden Braid' - Douglas Hofstadter</p>" +
+                                              "<p><b style='font-family: 'Times New Roman', serif;'>Philosophy:</b> 'Critique of Pure Reason' - Immanuel Kant</p>" +
+                                              "<p><b style='font-family: 'Courier New', monospace;'>History:</b> 'A Study of History' - Arnold J. Toynbee</p>" +
+                                              "<p><b style='font-family: 'Verdana, Geneva, sans-serif;'>Sociology:</b> 'The Protestant Ethic and the Spirit of Capitalism' - Max Weber</p>" +
+                                              "<p><b style='font-family: 'Georgia, serif;'>Political Science:</b> 'The Concept of the Political' - Carl Schmitt</p>";
+                }
+            }
+        </script>
+    </div>
+{% endblock %}

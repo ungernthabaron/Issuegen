@@ -1,0 +1,162 @@
+/* myapp/static/css/style.css */
+
+body {
+    font-family: 'Roboto Slab', serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom right, #000000, #ffffff); /* Updated gradient to black and white */
+    background-size: 400% 400%;
+    animation: melancholicBackground 40s linear infinite; /* Slowed down the background animation */
+    position: relative;
+    color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.8); /* Updated container background color to white */
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeInContainer 4s ease-in-out 1, colorChangeContainer 20s linear infinite; /* Slowed down container animations */
+}
+
+.slow-fade {
+    opacity: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #999;
+    animation: fadeIn 30s ease-in-out 1, colorChangeText 16s linear infinite; /* Slowed down text animations */
+}
+
+.square {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.6); /* Updated square background color to white */
+    animation: moveRandom 20s infinite, fadeInSquares 10s infinite alternate, colorChangeSquare 24s linear infinite; /* Slowed down square animations */
+}
+
+.square.big {
+    width: 40px;
+    height: 40px;
+}
+
+.square.small {
+    width: 10px;
+    height: 10px;
+}
+
+.button {
+    opacity: 0;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 6s, opacity 2s;
+    color: #999;
+    background-color: #333;
+    animation: fadeInButton 30s ease-in-out 1, rotateButton 10s linear infinite, bounceButton 2s infinite, colorChangeButton 20s linear infinite; /* Slowed down button animations */
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+@keyframes moveRandom {
+    from {
+        transform: translateY(calc(var(--randomY) * (100vh - 40px))) translateX(calc(var(--randomX) * (100vw - 40px)));
+    }
+    to {
+        transform: translateY(calc(var(--randomY) * (100vh - 40px) + 200px)) translateX(calc(var(--randomX) * (100vw - 40px) + 200px));
+    }
+}
+
+@keyframes fadeIn {
+    0%, 25% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInContainer {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInSquares {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes melancholicBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
+
+@keyframes colorChangeContainer {
+    0% {
+        background-color: rgba(54, 52, 52, 0.445);
+    }
+    50% {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    100% {
+        background-color: rgba(17, 1, 1, 0.226);
+    }
+}
+
+@keyframes colorChangeText {
+    0% {
+        color: #999;
+    }
+    50% {
+        color: #ffffff;
+    }
+    100% {
+        color: #999;
+    }
+}
+
+@keyframes colorChangeSquare {
+    0% {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+    50% {
+        background-color: rgba(255, 0, 0, 0.6);
+    }
+    100% {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+

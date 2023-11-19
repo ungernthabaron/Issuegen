@@ -1,0 +1,230 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <p class="slow-fade text-light" id="line1" style="opacity: 1;">
+            <span id="word">In</span>
+            <span id="country">Sweden</span>
+            <span id="condition">poorly with</span>
+            <span id="subject">roasting</span>
+            <span id="relation">in terms of</span>
+            <span id="object">herrings</span>            
+        </p>
+        <button class="button" id="changeCondition" style="opacity: 1;">changeCondition</button>
+        <button class="button" id="changeSubject" style="opacity: 1;">changeSubject</button>
+        <button class="button" id="changeObject" style="opacity: 1;">changeObject</button>
+        <button class="button slow-fade text-light" id="proceedToPage3" style="opacity: 1; animation-duration: 30s;" >Next</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const line1 = document.getElementById('line1');
+            const countrySpan = document.getElementById('country');
+            const conditionSpan = document.getElementById('condition');
+            const subjectSpan = document.getElementById('subject');
+            const relationSpan = document.getElementById('relation');
+            const objectSpan = document.getElementById('object');
+            var proceedToPage3 = document.getElementById('proceedToPage3');
+
+
+            window.fictionalCountries = [
+                "Gondoria",
+                "Rohania",
+                "Arctica-Land",
+                "Chocoladia",
+                "Joyland",
+                "Joketown",
+                "Tangaria",
+                "Ironforge",
+                "Dumplingstan",
+                "Caffeinia",
+                "Starfleetia",
+                "Chocolandia",
+                "Bambookistan",
+                "Rainbownia",
+                "Smesharikistan",
+                "Hyperbolia",
+                "Burgerland",
+                "Owlsville",
+                "Ovenland",
+                "Ballville",
+                "Penguinistan",
+                "Banana Republic",
+                "Vinylandia",
+                "Pajamagrad",
+                "Avocadovka",
+                "Tomatia",
+                "Wonderland",
+                "Barbecuestadt",
+                "Blockchainia",
+                "Lemonadia",
+                "Vatrushkia",
+                "Fantasia",
+                "Crocodilia",
+                "Pillowstan",
+                "Pizzatown",
+                "Smileyland",
+                "Bagelville",
+                "Chipsovia",
+                "Carrotvia",
+                "Jokeburg",
+                "Catopia",
+                "Fairyland",
+                "Cakeandria",
+                "Candyland",
+                "Pineapple Isle",
+                "Rollsville",
+                "Bandalia",
+                "Pelmenistan",
+                "Fluffystan",
+                "Pastiland",
+                // ... (other fictional countries)
+            ];
+            
+            window.fictionalSubjects = [
+                "legal practice",
+                "public opinion",
+                "legislation",
+                "cultural traditions",
+                "international norms",
+                "technological progress",
+                "economic conditions",
+                "ecological factors",
+                "innovations",
+                "educational system",
+                "political stability",
+                "religious beliefs",
+                "gender relations",
+                "social justice",
+                "historical heritage",
+                "healthcare",
+                "mass culture",
+                "sports and fitness",
+                "professional ethics",
+                "regional development",
+                "family values",
+                "digital technologies",
+                "psychological health",
+                "internal security",
+                "food security",
+                "infrastructure",
+                "climate change",
+                "media influence",
+                "geopolitical situation",
+                "scientific progress",
+                "art and culture",
+                "civil liberties",
+                "internet freedom",
+                "interethnic relations",
+                "civil activism",
+                "civilization values",
+                "energy security",
+                "space exploration",
+                "information security",
+                "digital literacy",
+                "intercultural understanding",
+                "military-political alliances",
+                "international trade",
+                "medical innovations",
+                "robotization and automation",
+                "population mobility",
+                "global demography",
+                "international diplomacy",
+                "ethical standards",
+                "geoengineering technologies",
+                "pandemic risks",
+                // ... (other fictional factors)
+            ];
+            
+            window.socialIssues = [
+                "domestic violence",
+                "gender inequality",
+                "child labor",
+                "environmental issues",
+                "public safety",
+                "office coffee shortage",
+                "alien invasions at picnics",
+                "global shortage of jokes",
+                "lost remote control syndrome",
+                "epidemic of smiles shortage",
+                "bubblegum explosion",
+                "kitten pandemic on the internet",
+                "forgotten dumpling crisis",
+                "rising number of self-dancing robot",
+                "sock incompatibility crisis",
+                "global cookie shortage in cafes",
+                "fight against eternal Monday",
+                "epidemic of funny band names",
+                "increasing number of lost socks",
+                "kittens invading coffee breaks",
+                "curious breadcrumbs crisis",
+                "global shortage of viruses of good mood",
+                "growing interest in vacuum cleaner dancing",
+                "epidemic of unserious toasts at weddings",
+                "rising number of forgotten passwords for coffee machines",
+                "global shortage of cats in the office",
+                "struggle against unwillingness to share chocolate",
+                "crisis of unpredictable soap opera plots",
+                "invasion of wonderful dreams on weekdays",
+                "epidemic of a lack of funny comments",
+                "increasing number of friendly robot-laughers",
+                "global obsession with coffee-free meetings",
+                "growing dependence on funny facts",
+                "struggle against unattached hippos",
+                "global deficit of funny kittens",
+                "fight against the desire to count sheep",
+                "epidemic of weather improvement with laughter",
+                "rising number of random dances in public transport",
+                "invasion of cheerful penguins into refrigerators",
+                "crisis of the lack of fake news about laughter",
+                "global shortage of comedic superheroes",
+                "growing popularity of laughter through video calls",
+                "epidemic of indigestible jokes",
+                "increasing laughter in response to haters",
+                "struggle against the lack of comedic pandemics",
+                "global deficit of funny memes",
+                // ... (other fictional social issues)
+            ];
+            
+            
+
+            function getRandomElement(arr) {
+                const randomIndex = Math.floor(Math.random() * arr.length);
+                return arr[randomIndex];
+            }
+
+            function changeCondition() {
+                if (window.fictionalCountries.length > 0) {
+                    countrySpan.textContent = getRandomElement(window.fictionalCountries);
+                }
+            }
+
+            function changeSubject() {
+                if (window.fictionalSubjects.length > 0) {
+                    subjectSpan.textContent = getRandomElement(window.fictionalSubjects);
+                }
+            }
+
+            function changeObject() {
+                if (window.socialIssues.length > 0) {
+                    objectSpan.textContent = getRandomElement(window.socialIssues);
+                }
+            }
+
+            // Привязка функции к событию click кнопки изменения условия
+            document.getElementById('changeCondition').addEventListener('click', changeCondition);
+
+            // Привязка функции к событию click кнопки изменения субъекта
+            document.getElementById('changeSubject').addEventListener('click', changeSubject);
+
+            // Привязка функции к событию click кнопки изменения объекта
+            document.getElementById('changeObject').addEventListener('click', changeObject);
+
+            proceedToPage3.addEventListener('click', function () {
+                window.location.href = "{% url 'page4' %}";
+            });
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!-- myapp/templates/page1.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+<p class="slow-fade text-light" id="line1">Hello!</p>
+<p class="slow-fade text-light" id="line2">This is a generator of social problems</p>
+<p class="slow-fade text-light" id="line3"><br>
+</p>
+<button onclick="window.location.href='/page2/'" class="button slow-fade" id="button">Next</button>
+</div>
+
+    {% for i in 1..50 %}
+        <div class="square" style="--randomX: {{ random.random }}; --randomY: {{ random.random }}"></div>
+    {% endfor %}
+
+    <script>
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const button = document.getElementById('button');
+        const line3 = document.getElementById('line3');
+
+        setTimeout(() => {
+            line1.style.opacity = '1';
+        }, 1000);
+
+        setTimeout(() => {
+            line2.style.opacity = '1';
+        }, 4000);
+
+        setTimeout(() => {
+            button.style.opacity = '1';
+        }, 8000);
+
+        setTimeout(() => {
+            line3.style.opacity = '1';
+        }, 1000);
+    </script>
+{% endblock %}

@@ -1,0 +1,86 @@
+<!-- page2.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .full-screen-background::before {
+            content: "Почему в Казахстане неудовлетворительная правоприменительная практика в отношении домашнего насилия?";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 4vw; /* Измените размер шрифта по вашему вкусу */
+            background-color: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый цвет */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .scrollable-content {
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        .slow-fade {
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .logic-quotes p,
+        .wiki-content p {
+            font-size: 14px;
+            margin-left: 0;
+            text-align: left;
+        }
+
+        .button {
+            opacity: 0;
+            transition: opacity 15s ease;
+        }
+    </style>
+
+    <div class="container">
+        <div class="scrollable-content">
+            <p class="slow-fade text-light" id="line1">'The limits of my language mean the limits of my world'</p>
+            <div class="slow-fade text-light" id="line6">
+                <p>
+                    Let 'In Kazakhstan' be the condition, 'law enforcement practice' the subject, and 'domestic violence' the object.
+                    This exercise will help us understand how variables influence the perception of an issue and provide new insight into the root of social issues. This application will help you with this.
+                </p>
+            </div>
+        </div>
+    <button class="button slow-fade" id="proceedToPage3">Next</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var line1 = document.getElementById('line1');
+            var line6 = document.getElementById('line6');
+            var proceedToPage3 = document.getElementById('proceedToPage3');
+
+            setTimeout(function () {
+                line1.style.opacity = '1';
+                line6.style.opacity = '1';
+                proceedToPage3.style.opacity = '1';
+            }, 100);
+
+            proceedToPage3.addEventListener('click', function () {
+                window.location.href = "{% url 'page3' %}";
+            });
+        });
+    </script>
+{% endblock %}
